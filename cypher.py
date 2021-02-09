@@ -20,7 +20,7 @@ def cypher(key):
 # Finish the program
 
 
-def ending():
+def exit():
     global end
     end = True
     return end
@@ -44,6 +44,8 @@ def show():
                 temp.append(chr(ord(char) - keynum))
             print(''.join(temp))
 
+# Add a True word a false word and a key to decypher
+
 
 def add():
     # A temporary list to hold the individual character value
@@ -60,28 +62,28 @@ def add():
         temp.append(chr(ord(char) + keynum))
     true_list.append(''.join(temp))
 
+# Help / show valid commands
 
-# A Dictionary to call a function from the inputed String
-commands = {
-    'end': ending,
-    "show": show,
-    "add": add
-}
-# Main program
-print("Welcome to the Cypher Program! ")
-while end == False:
-    try:
-        command = input("What do you want to do?: ")
-        commands[command]()
-    except:
-        print('''
-Not Valid !!!
+
+def help():
+    print('''
 The valid commands are:
  - add
  - show
- - end
+ - exit
 Try again.
 ''')
 
 
-print("Thank You!")
+# Main program
+print("Welcome to the Cypher Program! \n")
+while end == False:
+    try:
+        command = input("What do you want to do?: ") + "()"
+        eval(command)
+    except:
+        print("\nNot Valid ! ")
+        help()
+
+
+print("\nThank You!")
